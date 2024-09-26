@@ -16,8 +16,8 @@ let put = async (url, body) => {
 
 let fetch_ = async (url, method, body) => {
     let headers = {}
-    if (authorization) {
-        headers['Authorization'] = authorization
+    if (authorization.value.length) {
+        headers['Authorization'] = authorization.value
     }
     return await fetch(url, {
         'method': method,
@@ -31,7 +31,6 @@ let fetch_ = async (url, method, body) => {
             }
 
             if (res.code === 403) {
-                localStorage.removeItem("authorization")
                 setTimeout(() => {
                     location.reload()
                 }, 1000)
@@ -43,7 +42,7 @@ let fetch_ = async (url, method, body) => {
         })
 }
 
-let authorization = undefined
+let authorization = {value: ''}
 
 export default {post, get, del, put, authorization}
 

@@ -13,7 +13,7 @@ import CryptoJS from "crypto-js"
         'username': username,
         'password': password
     })
-    api.authorization = res.data
+    api.authorization.value = res.data
 
     res = await api.post(host + '/api/mikan', {})
     let items = res.data.items
